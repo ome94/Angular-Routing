@@ -18,6 +18,7 @@ import { MessageModule } from './messages/message.module';
 import { ProductListComponent } from './products/product-list.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductDetailComponent } from './products/product-detail.component';
+import { LoginComponent } from './user/login.component';
 
 @NgModule({
   imports: [
