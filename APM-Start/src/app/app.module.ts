@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -14,6 +15,9 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { ProductModule } from './products/product.module';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './messages/message.module';
+import { ProductListComponent } from './products/product-list.component';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { ProductDetailComponent } from './products/product-detail.component';
 
 @NgModule({
   imports: [
@@ -21,6 +25,14 @@ import { MessageModule } from './messages/message.module';
     HttpClientModule,
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
     ProductModule,
+    RouterModule.forRoot([
+      {path: 'welcome', component: WelcomeComponent},
+      {path: 'products', component: ProductListComponent},
+      {path: 'products/:id', component: ProductDetailComponent},
+      {path: 'products/:id/edit', component: ProductEditComponent},
+      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+      {path: '**', component: PageNotFoundComponent}
+    ]),
     UserModule,
     MessageModule
   ],
