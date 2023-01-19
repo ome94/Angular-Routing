@@ -15,10 +15,6 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { ProductModule } from './products/product.module';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './messages/message.module';
-import { ProductListComponent } from './products/product-list.component';
-import { ProductEditComponent } from './products/product-edit/product-edit.component';
-import { ProductDetailComponent } from './products/product-detail.component';
-import { LoginComponent } from './user/login.component';
 
 @NgModule({
   imports: [
@@ -28,9 +24,6 @@ import { LoginComponent } from './user/login.component';
     ProductModule,
     RouterModule.forRoot([
       {path: 'welcome', component: WelcomeComponent},
-      {path: 'products', component: ProductListComponent},
-      {path: 'products/:id', component: ProductDetailComponent},
-      {path: 'products/:id/edit', component: ProductEditComponent},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
     ]),
