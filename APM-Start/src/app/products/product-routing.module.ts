@@ -10,22 +10,27 @@ import { ProductEditTagsComponent } from "./product-edit/product-edit-tags.compo
 import { ProductResolver } from "./product-resolver.service";
 
 const ROUTES: Route[] = [
-  {path: 'products', component: ProductListComponent},
   {
-    path: 'products/:id',
-    data: { pageTitle: 'Product Detail' },
-    component: ProductDetailComponent,
-    resolve: { resolvedData: ProductResolver }
-  },
-  {
-    path: 'products/:id/edit',
-    component: ProductEditComponent,
-    data: { pageTitle: 'Edit Product' },
-    resolve: { resolvedData: ProductResolver },
+    path: 'products',
     children: [
-      {path: 'info', component: ProductEditInfoComponent},
-      {path: 'tags', component: ProductEditTagsComponent},
-      { path: '', redirectTo: 'info', pathMatch: 'full' }
+      { path: '', component: ProductListComponent },
+      {
+        path: ':id',
+        data: { pageTitle: 'Product Detail' },
+        component: ProductDetailComponent,
+        resolve: { resolvedData: ProductResolver }
+      },
+      {
+        path: ':id/edit',
+        component: ProductEditComponent,
+        data: { pageTitle: 'Edit Product' },
+        resolve: { resolvedData: ProductResolver },
+        children: [
+          {path: 'info', component: ProductEditInfoComponent},
+          {path: 'tags', component: ProductEditTagsComponent},
+          { path: '', redirectTo: 'info', pathMatch: 'full' }
+        ]
+      }
     ]
   },
 ];
