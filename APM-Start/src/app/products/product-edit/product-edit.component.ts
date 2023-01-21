@@ -13,6 +13,7 @@ import { ProductService } from '../product.service';
 export class ProductEditComponent implements OnInit {
   pageTitle = 'Product Edit';
   errorMessage: string;
+  private dataIsValid: {[key: string]: boolean} = {};
 
   product: Product;
 
@@ -28,6 +29,29 @@ export class ProductEditComponent implements OnInit {
       this.errorMessage = resolvedData.error;
       this.onProductRetrieved(resolvedData.product);
     })
+  }
+
+  validate () {
+    this.dataIsValid = {};
+    if (this.product.productName &&
+        this.product.productName.length >= 3 &&
+        this.product.productCode)
+      this.dataIsValid.info = true;
+
+    else this.dataIsValid.info = false;
+
+    this.dataIsValid.tags = this.product.category &&
+                            this.product.category.length >= 3  ?
+                            true : false;
+  }
+
+  isValid(tab?: string){
+    this.validate();
+    
+    if(tab) return this.dataIsValid[tab];
+
+    return Object.keys(this.dataIsValid)
+          .every(tab => this.dataIsValid[tab] === true);
   }
 
   onProductRetrieved(product: Product): void {
@@ -59,7 +83,7 @@ export class ProductEditComponent implements OnInit {
   }
 
   saveProduct(): void {
-    if (true === true) {
+    if (this.isValid()) {
       if (this.product.id === 0) {
         this.productService.createProduct(this.product).subscribe({
           next: () => this.onSaveComplete(`The new ${this.product.productName} was saved`),

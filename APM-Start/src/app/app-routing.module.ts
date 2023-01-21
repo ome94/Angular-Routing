@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { WelcomeComponent } from './home/welcome.component';
@@ -14,7 +13,6 @@ const ROUTES = [
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
     RouterModule.forRoot(ROUTES),
   ],
   exports: [RouterModule]
