@@ -16,21 +16,25 @@ const ROUTES: Route[] = [
       { path: '', component: ProductListComponent },
       {
         path: ':id',
-        data: { pageTitle: 'Product Detail' },
-        component: ProductDetailComponent,
+        children: [
+          {
+            path: '',
+            data: { pageTitle: 'Product Detail' },
+            component: ProductDetailComponent,
+          },
+          {
+            path: 'edit',
+            component: ProductEditComponent,
+            data: { pageTitle: 'Edit Product' },
+            children: [
+              {path: 'info', component: ProductEditInfoComponent},
+              {path: 'tags', component: ProductEditTagsComponent},
+              { path: '', redirectTo: 'info', pathMatch: 'full' }
+            ]
+          }
+        ],
         resolve: { resolvedData: ProductResolver }
       },
-      {
-        path: ':id/edit',
-        component: ProductEditComponent,
-        data: { pageTitle: 'Edit Product' },
-        resolve: { resolvedData: ProductResolver },
-        children: [
-          {path: 'info', component: ProductEditInfoComponent},
-          {path: 'tags', component: ProductEditTagsComponent},
-          { path: '', redirectTo: 'info', pathMatch: 'full' }
-        ]
-      }
     ]
   },
 ];
