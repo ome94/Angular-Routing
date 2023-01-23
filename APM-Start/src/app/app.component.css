@@ -4,7 +4,8 @@
 }
 
 .navbar-light .navbar-nav .nav-link.active {
-  color: #007ACC
+  border-bottom: 3px solid #007ACC;
+  color: #007ACC;
 }
 
 /* Spinner */
