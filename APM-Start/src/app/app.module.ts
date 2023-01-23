@@ -13,7 +13,6 @@ import { PageNotFoundComponent } from './page-not-found.component';
 
 /* Feature Modules */
 import { AppRoutingModule } from './app-routing.module';
-import { ProductModule } from './products/product.module';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './messages/message.module';
 
@@ -23,7 +22,6 @@ import { MessageModule } from './messages/message.module';
     BrowserAnimationsModule,
     HttpClientModule,
     InMemoryWebApiModule.forRoot(ProductData, { delay: 3000 }),
-    ProductModule,
     UserModule,
     MessageModule,
     AppRoutingModule,
