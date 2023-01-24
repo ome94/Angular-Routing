@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 export class LoginComponent {
   errorMessage: string;
   pageTitle = 'Log In';
+  redirectUrl = this.authService.redirectUrl;
 
   constructor(
     private authService: AuthService,
@@ -22,7 +23,7 @@ export class LoginComponent {
       this.authService.login(userName, password);
 
       // Navigate to the Product List page after log in.
-      this.router.navigate(['/products']);
+      this.router.navigate([this.redirectUrl||'/products']);
       
     } else {
       this.errorMessage = 'Please enter a user name and password.';
